@@ -1,0 +1,265 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="" xml:lang="">
+<head>
+  <meta charset="utf-8" />
+  <meta name="generator" content="pandoc" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes" />
+  <title>NetBSD私的年次報告2021</title>
+  <style>
+    html {
+      line-height: 1.5;
+      font-family: Georgia, serif;
+      font-size: 20px;
+      color: #1a1a1a;
+      background-color: #fdfdfd;
+    }
+    body {
+      margin: 0 auto;
+      max-width: 36em;
+      padding-left: 50px;
+      padding-right: 50px;
+      padding-top: 50px;
+      padding-bottom: 50px;
+      hyphens: auto;
+      overflow-wrap: break-word;
+      text-rendering: optimizeLegibility;
+      font-kerning: normal;
+    }
+    @media (max-width: 600px) {
+      body {
+        font-size: 0.9em;
+        padding: 1em;
+      }
+    }
+    @media print {
+      body {
+        background-color: transparent;
+        color: black;
+        font-size: 12pt;
+      }
+      p, h2, h3 {
+        orphans: 3;
+        widows: 3;
+      }
+      h2, h3, h4 {
+        page-break-after: avoid;
+      }
+    }
+    p {
+      margin: 1em 0;
+    }
+    a {
+      color: #1a1a1a;
+    }
+    a:visited {
+      color: #1a1a1a;
+    }
+    img {
+      max-width: 100%;
+    }
+    h1, h2, h3, h4, h5, h6 {
+      margin-top: 1.4em;
+    }
+    h5, h6 {
+      font-size: 1em;
+      font-style: italic;
+    }
+    h6 {
+      font-weight: normal;
+    }
+    ol, ul {
+      padding-left: 1.7em;
+      margin-top: 1em;
+    }
+    li > ol, li > ul {
+      margin-top: 0;
+    }
+    blockquote {
+      margin: 1em 0 1em 1.7em;
+      padding-left: 1em;
+      border-left: 2px solid #e6e6e6;
+      color: #606060;
+    }
+    code {
+      font-family: Menlo, Monaco, 'Lucida Console', Consolas, monospace;
+      font-size: 85%;
+      margin: 0;
+    }
+    pre {
+      margin: 1em 0;
+      overflow: auto;
+    }
+    pre code {
+      padding: 0;
+      overflow: visible;
+      overflow-wrap: normal;
+    }
+    .sourceCode {
+     background-color: transparent;
+     overflow: visible;
+    }
+    hr {
+      background-color: #1a1a1a;
+      border: none;
+      height: 1px;
+      margin: 1em 0;
+    }
+    table {
+      margin: 1em 0;
+      border-collapse: collapse;
+      width: 100%;
+      overflow-x: auto;
+      display: block;
+      font-variant-numeric: lining-nums tabular-nums;
+    }
+    table caption {
+      margin-bottom: 0.75em;
+    }
+    tbody {
+      margin-top: 0.5em;
+      border-top: 1px solid #1a1a1a;
+      border-bottom: 1px solid #1a1a1a;
+    }
+    th {
+      border-top: 1px solid #1a1a1a;
+      padding: 0.25em 0.5em 0.25em 0.5em;
+    }
+    td {
+      padding: 0.125em 0.5em 0.25em 0.5em;
+    }
+    header {
+      margin-bottom: 4em;
+      text-align: center;
+    }
+    #TOC li {
+      list-style: none;
+    }
+    #TOC a:not(:hover) {
+      text-decoration: none;
+    }
+    code{white-space: pre-wrap;}
+    span.smallcaps{font-variant: small-caps;}
+    span.underline{text-decoration: underline;}
+    div.column{display: inline-block; vertical-align: top; width: 50%;}
+    div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+    ul.task-list{list-style: none;}
+    .display.math{display: block; text-align: center; margin: 0.5rem auto;}
+  </style>
+  <!--[if lt IE 9]>
+    <script src="//cdnjs.cloudflare.com/ajax/libs/html5shiv/3.7.3/html5shiv-printshiv.min.js"></script>
+  <![endif]-->
+</head>
+<body>
+<header id="title-block-header">
+<h1 class="title">NetBSD私的年次報告2021</h1>
+</header>
+<p>このところ、本業が多忙で作業できてない私ことrin@です。</p>
+<p>モチベ向上のために、Advent Calendarを利用して、 2020年12月〜2021年11月の思い出深い事件をまとめてみます。</p>
+<p>お前の自分語りなんぞ興味ねーわ、 というツッコミが聞こえてきますが、 過疎ってるし、まあええやろ!</p>
+<p>さすがに最終日は憚られたので、 24日までに間に合わせようとしたら意外と大変で、 リンクとか貼ってない手抜き版です。 詳細はnervのコミットログとか見てね: <a href="http://www.nerv.org/netbsd/?q=user:rin">本体</a>, <a href="http://www.nerv.org/pkgsrc/?q=user:rin">pkgsrc</a>。 言い訳ばかりで面目ない!</p>
+<h1 id="年12月">2020年12月</h1>
+<h2 id="evbarmラズパイ0-3でbig-endian-modeをサポート">evbarm/ラズパイ0-3でbig-endian modeをサポート</h2>
+<p>ラズパイ2-3はearmv7{,hf}ebで、 ラズパイ3はaarch64ebで動くはずだったが、 mailbox, DMAC, early console等にlittle endian依存が残っていた。</p>
+<p>ラズパイ0-1のearmv6{,hf}ebは、 Nのカーネルが動作した実績がなかった。</p>
+<p>v6{,hf}ebのABIはv5{,hf}eb以前と互換性のあるBE32を想定していたが、 v7{,hf}eb以降と互換性のあるBE8に切り替えた。</p>
+<p>N以外の人はfirmwareがlittle endianで動いてるマシンを わざわざbig-endian modeで使ったりしないので、 バイトオーダの切り替え方法はろくに解説されていない。 ARMv6でlittle-endian modeからBE8 modeに切り替えるには、 まずSCTLRのUビットを立ててから、 setend beする必要があった。</p>
+<h1 id="年1月">2021年1月</h1>
+<h2 id="powerpcbookeのpmap_procwrを直す">powerpc/bookeのpmap_procwr()を直す</h2>
+<p>pmap_procwr()はnoopでも大抵のものは動いてしまうので、 まず壊れてる・まじめにテストされていないと思うのが吉。</p>
+<h1 id="年2月">2021年2月</h1>
+<h2 id="amigaboot8でffsv2をサポート">amiga/boot(8)でFFSv2をサポート</h2>
+<p>基本的にはlibsaの枠組みで簡単にできた。 first-stage bootはself-relocationするのが少し面白かった。</p>
+<h1 id="年3月">2021年3月</h1>
+<h2 id="evbppcexplora-451を直す">evbppc/Explora 451を直す</h2>
+<p>IBM403の割り込みハンドラを書き直したら、 NetBSD 6以来、 長らく壊れていたのが動くようになった。 その後、wsfb(4) Xサーバなどもサポートした。</p>
+<h2 id="powerpcbooke-ibm4xxでptrace2をサポート">powerpc/booke, ibm4xxでptrace(2)をサポート</h2>
+<p>booke, ibm4xxにはoeaのMSR DEビットがない。 実はoeaよりはるかに高機能なHWデバッグ機構があるのだが、 どちらかと言えばfirmware/OS向けで、ptrace(2)には応用しづらい。 そこで、software breakpointを埋め込む方式に切り替えた。</p>
+<h2 id="radeonfb4でmlterm-fbをサポート">radeonfb(4)でmlterm-fbをサポート</h2>
+<p>WSDISPLAY_[GS]ETCMAP ioctl(2)が壊れていた。 Xサーバはハードウェアレジスタを直接いじるので、 動いているように見えていたのだった。 似たような理由でmlterm-fbが動かないドライバはまだありそう。</p>
+<h2 id="mac68kdjmemcmaxを直す">mac68k/DJMEMCMAXを直す</h2>
+<p>Quadra 800で驚異の実メモリ520MBが実現した。 680[46]0のpmapはしょぼいので、直さなきゃ。</p>
+<h2 id="sandpoint玄箱hgのtftp-bootを直す">sandpoint/玄箱HGのtftp bootを直す</h2>
+<p>libsaのネットワークコードの闇を見た。 mbufを使っていないので、 リニアバッファのポインタをデクリメントして、 ヘッダを追加していくのだった。 邪悪!</p>
+<h1 id="年4月">2021年4月</h1>
+<h2 id="evbppcdht-walnut-405gp評価ボードのサポート">evbppc/DHT Walnut 405GP評価ボードのサポート</h2>
+<p>PCIスロットを2本搭載した可愛い評価ボード。 NがSoCをサポートしていたので、 PCIの割り込みルーティングとか書いてやるだけで動いた。</p>
+<p>405関係のコードは整理したけど、まだ汚いなぁ。 DTB?</p>
+<p>ページサイズが16KBなので(?)、nvme(4)が動かない。</p>
+<h2 id="powerpcibm4xxのpmap_enterkenter_pa9を直す">powerpc/ibm4xxのpmap_{enter,kenter_pa}(9)を直す</h2>
+<p>UVM_KMF_NOWAITを指定せずにuvm_km_alloc(9)を呼んでいたため、 実メモリが足りないときにデッドロックしていた。</p>
+<p>PMAP_CANFAILのときは、ENOMEMを返せばUVMが良きに計らってくれる。 そうでなければご愁傷様だが、仕方ない?</p>
+<h2 id="gcc10powerpcのregressionを直す">GCC10/powerpcのregressionを直す</h2>
+<p>upstreamが4xxとbookeのサポートを壊していた。 誰も使ってない証拠。</p>
+<h1 id="年5月">2021年5月</h1>
+<h2 id="ixg4をalphaで動かすお手伝い">ixg(4)をalphaで動かすお手伝い</h2>
+<p>F由来のコードはm_free(9)してからbus_dmamap_unload(9)する場合が多いが、 N/alpha等のbus_dmaでは逆にしないと動かなかった。</p>
+<h2 id="qemum68kのquadra-800モードでnetbsdを動かすお手伝い">QEMU/m68kのQuadra 800モードでNetBSDを動かすお手伝い</h2>
+<p>QEMUの中の人の質問に答えつつ、 細々とした修正をコミットする簡単なお仕事。 QEMU側の修正もコミットされたっぽい。</p>
+<h2 id="aarch64のcompat_netbsd32関係のお掃除">aarch64のCOMPAT_NETBSD32関係のお掃除</h2>
+<p>VFPを使うコードが正常に動くようになるなど。 ↓の問題との切り分けができて助かった。</p>
+<h2 id="libunwindarmを直す">libunwind/armを直す</h2>
+<p>GCCとLLVMではDWARFでのVFPレジスタの取り扱いに違いがあり、 前者がサポートできていなかった。 その結果、VFPを使うコードがC++の例外を投げた瞬間、 libunwind内の不整合でプロセスが死んでいた。 GCCのバージョンが上がる毎に、整数演算にVFPを使う最適化が進行して、 どいひー度合いが増していたのだった。</p>
+<h2 id="perl-v.s.-tmpfs-on-compat_netbsd32問題が直る">perl v.s. tmpfs on COMPAT_NETBSD32問題が直る</h2>
+<p>COMPAT_NETBSD32かつ作業ディレクトリがtmpfsという条件で、 lang/perl5がビルドできないという謎現象。 Nのino_tは64ビットで、 なおかつLP64カーネルのtmpfsでは上位32ビットがnon-zeroになる都合上、 miniperlにlong longサポートが入っていないと動かないところまで突き止めた。</p>
+<p>perlの中の人たちと議論したところ、 inode numberがホストの整数型に収まらない場合は文字列として格納することで、 64-bit safeにしたつもりが、いくつかのモジュールで文字列から整数に再変換して 比較していたことが発覚、修正。</p>
+<h1 id="年6月">2021年6月</h1>
+<h2 id="armのfpeでカーネルが落ちるバグを直す">armのFPEでカーネルが落ちるバグを直す</h2>
+<p>ARMv7以降はデフォルトでFPEを上げてこないので、誰も気づいていなかった。 これもどいひーなバグ。</p>
+<h2 id="aarch64ebのgdbを直す">aarch64ebのGDBを直す</h2>
+<p>実はaarch64でも壊れていたが、 little endianなのでたまたま動いているように見えた。 多様性、重要。</p>
+<h2 id="gcc10armのregressionを直す">GCC10/armのregressionを直す</h2>
+<p>GCC10にNetBSD EABIサポートをupstreamしたときに、 ヘッダのインクルード順を間違えてエンバグしていた。</p>
+<h2 id="compiler-rtarmのeabihf規約違反を直す">compiler-rt/armのEABIHF規約違反を直す</h2>
+<p>earmv[67]hfで複素数型を使うと落ちるという、 これまたどいひーなバグ修正をupstreamから取り込む。</p>
+<h2 id="kernel_lockがmodular-multiprocessorで壊れてたのを直す">KERNEL_LOCK()がMODULAR &amp;&amp; !MULTIPROCESSORで壊れてたのを直す</h2>
+<p>MODULAR &amp;&amp; !MULTIPROCESSORなカーネルで KERNEL_LOCK()はnoopになっていたが、 モジュール側では有効化されていて、 不整合が生じていた。</p>
+<p>誰も!MULTIPROCESSORなカーネルなんか使っていないという証拠。</p>
+<h2 id="compiler-rtarmのeabi規約違反を直す">compiler-rt/armのEABI規約違反を直す</h2>
+<p>arm EABIではspは8バイト境界に整列している必要があるが、 compiler-rtの一部のルーチンが違反していた。</p>
+<p>ARMv5teの{ld,st}rd命令は、 オペランドが8バイト境界に整列している必要があるため、 GCCがspのアラインメントを仮定した最適化をすると、 あちこちでalignment faultが発生することになる (↓のGCC/alphaの項を参照)。</p>
+<p>ARMv6以降はunaligned accessが可能になったため、 誰も気づかなかった模様。</p>
+<h2 id="evbarmhdl-gのkernel_baseを直す">evbarm/HDL-GのKERNEL_BASEを直す</h2>
+<p>KERNEL_BASEのデフォルトが0xc0000000から0x80000000に 変更されたときに直すのを忘れていたため、 カーネルテキストとして+1GB余分にマップしようとして pmap_bootstrap()で落ちていた。</p>
+<h1 id="年7月">2021年7月</h1>
+<h2 id="alphaのgcc最適化問題ついに解決">alphaのGCC最適化問題、ついに解決</h2>
+<p>NetBSD 9.0のリリース直前、alphaで新しいjemallocが動かない問題が発覚。 がんばって二分法で探索して、最適化抑制で対処した。 んだけど、その後もいろんなコードが-O2で動かず、気持ち悪かった。</p>
+<p>devel/gettext-toolsで発生した問題を詳しく解析したところ、 GCCはspが16バイト境界にアラインしているつもりで最適化していたが、 Nのカーネル・ユーザランドは8バイト境界のアラインメントしか保証していなかった。</p>
+<p>alphaにはSystem V (ELF) ABIが存在しないので、 どちらが正しいと言うことでもないが、 パフォーマンスを考慮した結果、16バイト境界にアラインすることになった。</p>
+<p>最近のGCCはこの手の最適化を積極的にやってくれる。 私の知る限り、Nではpowerpc, m68k, alpha, armv5が影響を被っている。</p>
+<h2 id="sh3のcpu_switchtoを直す">sh3のcpu_switchto()を直す</h2>
+<p>この時期、sh3のカーネルは相当不安定で、 full ATFすらおぼつかないような状況だった (現在は1個だけKASSERTを無効化しておけば、 DIAGNOSTICカーネルが問題なく動く)。</p>
+<p>sh3ではコンテキストスイッチのときに、 SRレジスタを待避・復元するのだけれど、 SRには割り込みマスクが含まれている。 古いコードはこの部分まで復元していたので、 禁止していたはずの割り込みがいつの間にか許可されて、 めちゃくちゃになっていたのだった。</p>
+<h1 id="年8月">2021年8月</h1>
+<h2 id="xscale-i80321のsplraise9を直す">XScale i80321のsplraise(9)を直す</h2>
+<p>古いarmは割り込みまわりのコードが共通化されていないので、 けっこうカオスである。 XScale i80321には、 splraise(9)でIPLを下げることができるバグがあり、 これまた禁止したはずの割り込みが(以下同文)。</p>
+<h2 id="evbarm玄箱proでbig-endian-modeをサポートする">evbarm/玄箱PROでbig-endian modeをサポートする</h2>
+<p>ラズパイのところで書いたとおり、 firmwareがlittle-endian modeで走り始めたarmプロセッサを、 big-endian modeに切り替える方法はほとんど黒魔術である。</p>
+<p>玄箱PROのARM926EJ-Sの場合は、 SCTLRのBビットを立てる、 nop 3連発でプリフェッチバッファを空にする、 という操作をlittle endianでコーディングした後、 big endianでSCTLRを空読みするコードを書いてやれば、 後はbig-endian modeで動作する。 これでearmv5ebのテスト環境が手に入った。</p>
+<p>ちなみに、HDL-Gのi80321では同じ方法が使えず、 big-endian modeで動かせていない。 どうしたものやら。</p>
+<h1 id="年9月">2021年9月</h1>
+<h2 id="sh3のpmapのバグが直る">sh3のpmapのバグが直る</h2>
+<p>pmap_enter(9)がENOMEMを返すパスが間違っていたため、 pmap_page_protect(9)が無限ループに陥る場合があった。</p>
+<h2 id="lp64beだけで顕在化するcurses3のバグを直す">LP64BEだけで顕在化するcurses(3)のバグを直す</h2>
+<p>どういうわけかaarch64ebとsparc64だけで失敗するテストがあり、 調べてみたところ、curses(3)が画面の書き換えを検出するために内部に 持っているhashの計算が間違っていた。 バグったアルゴリズムで計算した値がlittle endianと ILP32BEでたまたま一致していたので、LP64BEが壊れているように見えたのだった。 多様性、(以下同文)。</p>
+<h2 id="sh3のfault-handlerを直す">sh3のfault handlerを直す</h2>
+<p>sh3マシンに負荷をかけると、 どういうわけかpc = 0番地でクラッシュする場合があった。 MDの関数ポインタがNULLになってる場所を一生懸命探したが見つからず、 あれこれコードを読んでいたら、例外ハンドラが間違っていて、 pcb_onfaultがNULLの場合もpcに上書きしていた。</p>
+<h2 id="compat_linuxでfstatat64at_empty_pathの雑サポート">COMPAT_LINUXでfstatat64(AT_EMPTY_PATH)の雑サポート</h2>
+<p>Fedora 34というかglibc 2.33のrtldがfstatat64(2) のAT_EMPTY_PATHを使うために、 ダイナミックリンクライブラリを見つけられなくなっていた。 どうしてfstat(2)じゃダメなんですか、とかいろいろ意味不明だけど、 とりあえず雑サポートを追加。</p>
+<h1 id="年10月">2021年10月</h1>
+<h2 id="wdc4-at-pcmcia4のmemory-mapped-modeを直す">wdc(4) at pcmcia(4)のmemory-mapped modeを直す</h2>
+<p>PCMCIAやそのsubsetであるCFは、 ATAレジスタをI/O空間にマップできるほか、 古いPCMCIAの拡張メモリと同じスタイルでメモリマップすることもできる。 両者はpinoutが一部異なっていて、memory-mapped modeでは (原則として)割り込み線が使えず、ポーリング駆動が必要になる。</p>
+<p>F, O, LはそもそもPCMCIA ATAのmemory-mapped modeなんて、 ハナからサポートしていないわけだが、 Jornadaやペルソナで使われているSoCである HD64461では、2つのPCMCIAスロットのうち一方は memory-mapped mode専用で、I/O-mappedはサポートしていないため、 Nでは必要になるケースもあるわけだ。</p>
+<p>世の中の大半のATAコントローラは割り込み駆動なこともあり、 NCQサポートを追加したときにポーリング対応がエンバグしていた。</p>
+<h2 id="sh3のpcmcia-hwバグ対応を直す">sh3のPCMCIA HWバグ対応を直す</h2>
+<p>↑でも登場したHD64461というか、sh3コアのPCMCIA機能にはバグがあり、 16-bit wordの読み書きに続いて、byte単位の読み書きをすると、 誤って16-bit word全体がbyte-enabledになるという問題がある。 のだが、ウェブ上で探した限り、このバグについての文書が見つけられなかった。</p>
+<p>↑のwdc(4)の問題を調べるために買った別冊インターフェース TECH I 14号のコラムで、このバグの詳細が解説されていた。 それに倣ってコードを修正したところ、 今まで動かなかったep(4) at pcmcia(4)が元気に動くようになった。</p>
+<h1 id="年11月">2021年11月</h1>
+<h2 id="aarch64ebだけで顕在化するstrict-aliasing規約違反を直す">aarch64ebだけで顕在化するstrict aliasing規約違反を直す</h2>
+<p>どういうわけかaarch64ebだけで失敗するtest caseがあり、 よくよく調べてみたところ、一種のstrict aliasing規約違反を発見した。 2種類の異なるポインタが指す実体を、 (ポインタを割り当てる前に) 構造体代入でコピーするのは、 少なくともGCCにとっては許しがたい行為のようだ。</p>
+<p>MDの最適化やバイトオーダの都合上、 たまたまaarch64ebだけで顕在化していた。 多様性。</p>
+<h2 id="hpcarmのddb-btを直す">hpcarmのDDB btを直す</h2>
+<p>armのDDBはAPCSスタックフレームを前提としているので、 -mapcs-frameしないとback traceがとれないのだった。</p>
+<h1 id="おしまい">おしまい</h1>
+<p>今年はまあまあがんばったかな? そうでもないかな? 来年もよろしくお願いいたします。</p>
+</body>
+</html>
