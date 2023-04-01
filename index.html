@@ -7,9 +7,6 @@
   <title>Rin Okuyama</title>
   <style>
     html {
-      line-height: 1.5;
-      font-family: Georgia, serif;
-      font-size: 20px;
       color: #1a1a1a;
       background-color: #fdfdfd;
     }
@@ -28,10 +25,16 @@
     @media (max-width: 600px) {
       body {
         font-size: 0.9em;
-        padding: 1em;
+        padding: 12px;
+      }
+      h1 {
+        font-size: 1.8em;
       }
     }
     @media print {
+      html {
+        background-color: white;
+      }
       body {
         background-color: transparent;
         color: black;
@@ -81,9 +84,10 @@
       color: #606060;
     }
     code {
-      font-family: Menlo, Monaco, 'Lucida Console', Consolas, monospace;
+      font-family: Menlo, Monaco, Consolas, 'Lucida Console', monospace;
       font-size: 85%;
       margin: 0;
+      hyphens: manual;
     }
     pre {
       margin: 1em 0;
@@ -134,15 +138,26 @@
     #TOC li {
       list-style: none;
     }
+    #TOC ul {
+      padding-left: 1.3em;
+    }
+    #TOC > ul {
+      padding-left: 0;
+    }
     #TOC a:not(:hover) {
       text-decoration: none;
     }
     code{white-space: pre-wrap;}
     span.smallcaps{font-variant: small-caps;}
-    span.underline{text-decoration: underline;}
-    div.column{display: inline-block; vertical-align: top; width: 50%;}
+    div.columns{display: flex; gap: min(4vw, 1.5em);}
+    div.column{flex: auto; overflow-x: auto;}
     div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
     ul.task-list{list-style: none;}
+    ul.task-list li input[type="checkbox"] {
+      width: 0.8em;
+      margin: 0 0.8em 0.2em -1.6em;
+      vertical-align: middle;
+    }
     .display.math{display: block; text-align: center; margin: 0.5rem auto;}
   </style>
   <!--[if lt IE 9]>
@@ -153,45 +168,83 @@
 <header id="title-block-header">
 <h1 class="title">Rin Okuyama</h1>
 </header>
-<p>Last update: 4 Jan. 2022</p>
+<p>Last update: 1 Apr. 2023</p>
 <h1 id="about-me">About me</h1>
 <figure>
-<img src="camel.jpg" alt="Me at Yagiyama Zoo Park" /><figcaption aria-hidden="true">Me at Yagiyama Zoo Park</figcaption>
+<img src="camel.jpg" alt="Me at Yagiyama Zoo Park" />
+<figcaption aria-hidden="true">Me at Yagiyama Zoo Park</figcaption>
 </figure>
 <ul>
-<li><p>Researcher on theoretical physics</p>
-<ul>
-<li>Assistant professor (since Apr. 2018) <a href="http://www.isc.meiji.ac.jp/~physics/indexjp_e.htm">Department of Physics</a>, <a href="http://www.meiji.ac.jp/cip/english/undergraduate/science/index.html">School of Science and Technology, Meiji University</a></li>
-</ul></li>
 <li><p>Open source developer</p>
 <ul>
-<li><a href="http://www.NetBSD.org/">NetBSD</a> developer (since Nov. 2016): rin <em>at</em> NetBSD <em>dot</em> org</li>
+<li><a href="http://www.NetBSD.org/">NetBSD</a> developer (since
+Nov. 2016): rin <em>at</em> NetBSD <em>dot</em> org</li>
 <li>GitHub: <a href="https://github.com/rokuyama/">rokuyama</a></li>
-<li>Bitbucket: <a href="https://bitbucket.org/rokuyama/">rokuyama</a></li>
+<li>Bitbucket: <a
+href="https://bitbucket.org/rokuyama/">rokuyama</a></li>
+</ul></li>
+<li><p><em>Retired</em> researcher on theoretical physics</p>
+<ul>
+<li>Retired from research activities.</li>
+<li>For previous studies, please contact my colleagues.</li>
 </ul></li>
 </ul>
 <h1 id="research-fields">Research fields</h1>
-<h2 id="carbon-nanotube-as-nanomechanical-toy">Carbon nanotube as nanomechanical toy</h2>
+<h2 id="carbon-nanotube-as-nanomechanical-toy">Carbon nanotube as
+nanomechanical toy</h2>
 <ul>
-<li>W. Izumida, R. Okuyama, K. Sato, T. Kato, and M. Matsuo, “Einstein-de Haas nanorotor”, <a href="https://doi.org/10.1103/PhysRevLett.128.017701"><em>Phys. Rev. Lett.</em> <strong>128</strong>, 017701 (2022)</a></li>
+<li>W. Izumida, R. Okuyama, K. Sato, T. Kato, and M. Matsuo,
+“Einstein-de Haas nanorotor”, <a
+href="https://doi.org/10.1103/PhysRevLett.128.017701"><em>Phys.
+Rev. Lett.</em> <strong>128</strong>, 017701 (2022)</a></li>
 </ul>
-<h2 id="topological-properties-of-carbon-nanotube">Topological properties of carbon nanotube</h2>
+<h2 id="topological-properties-of-carbon-nanotube">Topological
+properties of carbon nanotube</h2>
 <ul>
-<li><p>R. Okuyama, W. Izumida, and M. Eto, “Topological classification of the single-wall carbon nanotube”, <a href="https://doi.org/10.1103/PhysRevB.99.115409"><em>Phys. Rev. B</em> <strong>99</strong>, 115409 (2019)</a></p></li>
-<li><p>R. Okuyama, W. Izumida, and M. Eto, “Topological phase transition in metallic single-wall carbon nanotube”, <a href="http://dx.doi.org/10.7566/JPSJ.86.013702"><em>J. Phys. Soc. Jpn</em> <strong>86</strong>, 013702 (2017)</a></p></li>
-<li><p>W. Izumida, R. Okuyama, A. Yamakage, and R. Saito, “Angular momentum and topology in semiconducting single-wall carbon nanotubes”, <a href="http://dx.doi.org/10.1103/PhysRevB.93.195442"><em>Phys. Rev. B</em> <strong>93</strong>, 195442 (2016)</a></p></li>
+<li><p>R. Okuyama, W. Izumida, and M. Eto, “Topological classification
+of the single-wall carbon nanotube”, <a
+href="https://doi.org/10.1103/PhysRevB.99.115409"><em>Phys. Rev. B</em>
+<strong>99</strong>, 115409 (2019)</a></p></li>
+<li><p>R. Okuyama, W. Izumida, and M. Eto, “Topological phase transition
+in metallic single-wall carbon nanotube”, <a
+href="http://dx.doi.org/10.7566/JPSJ.86.013702"><em>J. Phys. Soc.
+Jpn</em> <strong>86</strong>, 013702 (2017)</a></p></li>
+<li><p>W. Izumida, R. Okuyama, A. Yamakage, and R. Saito, “Angular
+momentum and topology in semiconducting single-wall carbon nanotubes”,
+<a href="http://dx.doi.org/10.1103/PhysRevB.93.195442"><em>Phys.
+Rev. B</em> <strong>93</strong>, 195442 (2016)</a></p></li>
 </ul>
-<h2 id="phonon-lasing-in-charged-qubit">Phonon lasing in charged qubit</h2>
+<h2 id="phonon-lasing-in-charged-qubit">Phonon lasing in charged
+qubit</h2>
 <ul>
-<li><p>R. Okuyama, M. Eto, and T. Brandes, “Lasing and antibunching of optical phonons in semiconductor double quantum dots”, <a href="http://dx.doi.org/10.1088/1367-2630/15/8/083032"><em>New J. Phys</em> <strong>15</strong>, 083032 (2013)</a></p></li>
-<li><p>R. Okuyama, M. Eto, and T. Brandes, “Optical phonon lasing in semiconductor double quantum dots”, <a href="http://dx.doi.org/10.7566/JPSJ.82.013704"><em>J. Phys. Soc. Jpn</em> <strong>82</strong>, 013704 (2013)</a></p></li>
+<li><p>R. Okuyama, M. Eto, and T. Brandes, “Lasing and antibunching of
+optical phonons in semiconductor double quantum dots”, <a
+href="http://dx.doi.org/10.1088/1367-2630/15/8/083032"><em>New J.
+Phys</em> <strong>15</strong>, 083032 (2013)</a></p></li>
+<li><p>R. Okuyama, M. Eto, and T. Brandes, “Optical phonon lasing in
+semiconductor double quantum dots”, <a
+href="http://dx.doi.org/10.7566/JPSJ.82.013704"><em>J. Phys. Soc.
+Jpn</em> <strong>82</strong>, 013704 (2013)</a></p></li>
 </ul>
-<p>See also introduction by Y. Tokura: <a href="http://journals.jps.jp/doi/full/10.7566/JPSJNC.10.01"><em>JPSJ News and Comments</em> <strong>10</strong>, 01 (2013)</a></p>
-<h2 id="wigner-molecule-in-quantum-ring">Wigner molecule in quantum ring</h2>
+<p>See also introduction by Y. Tokura: <a
+href="http://journals.jps.jp/doi/full/10.7566/JPSJNC.10.01"><em>JPSJ
+News and Comments</em> <strong>10</strong>, 01 (2013)</a></p>
+<h2 id="wigner-molecule-in-quantum-ring">Wigner molecule in quantum
+ring</h2>
 <ul>
-<li><p>H. Kim, S. Park, R. Okuyama, K. Kyhm, M. Eto <em>et al.</em>, “Light controlled optical Aharonov–Bohm oscillations in a single quantum ring”, <a href="http://dx.doi.org/10.1021/acs.nanolett.8b02131"><em>Nano Lett.</em> <strong>18</strong>, 6188 (2018)</a></p></li>
-<li><p>H. D. Kim, R. Okuyama, K. Kyhm, M. Eto <em>et al.</em>, “Observation of a biexciton Wigner molecule by fractional optical Aharonov-Bohm oscillations in a single quantum ring”, <a href="http://dx.doi.org/10.1021/acs.nanolett.5b02419"><em>Nano Lett.</em> <strong>16</strong>, 27 (2016)</a></p></li>
-<li><p>R. Okuyama, M. Eto, and H. Hyuga, “Optical Aharonov-Bohm effect on Wigner molecules in type-II semiconductor quantum dots”, <a href="http://dx.doi.org/10.1103/PhysRevB.83.195311"><em>Phys. Rev. B</em> <strong>83</strong>, 195311 (2011)</a></p></li>
+<li><p>H. Kim, S. Park, R. Okuyama, K. Kyhm, M. Eto <em>et al.</em>,
+“Light controlled optical Aharonov–Bohm oscillations in a single quantum
+ring”, <a href="http://dx.doi.org/10.1021/acs.nanolett.8b02131"><em>Nano
+Lett.</em> <strong>18</strong>, 6188 (2018)</a></p></li>
+<li><p>H. D. Kim, R. Okuyama, K. Kyhm, M. Eto <em>et al.</em>,
+“Observation of a biexciton Wigner molecule by fractional optical
+Aharonov-Bohm oscillations in a single quantum ring”, <a
+href="http://dx.doi.org/10.1021/acs.nanolett.5b02419"><em>Nano
+Lett.</em> <strong>16</strong>, 27 (2016)</a></p></li>
+<li><p>R. Okuyama, M. Eto, and H. Hyuga, “Optical Aharonov-Bohm effect
+on Wigner molecules in type-II semiconductor quantum dots”, <a
+href="http://dx.doi.org/10.1103/PhysRevB.83.195311"><em>Phys.
+Rev. B</em> <strong>83</strong>, 195311 (2011)</a></p></li>
 </ul>
 <h2 id="and-more">And more…</h2>
 <ul>
@@ -201,54 +254,76 @@
 <h1 id="fellowships">Fellowships</h1>
 <table>
 <colgroup>
-<col style="width: 28%" />
-<col style="width: 71%" />
+<col style="width: 10%" />
+<col style="width: 89%" />
 </colgroup>
 <tbody>
 <tr class="odd">
-<td>Apr. 2018 ~</td>
-<td>Assistant Professor, <a href="http://www.isc.meiji.ac.jp/~physics/indexjp_e.htm">Department of Physics, Meiji University</a></td>
+<td>Apr. 2018 ~ Mar. 2023</td>
+<td>Assistant Professor, <a
+href="http://www.isc.meiji.ac.jp/~physics/indexjp_e.htm">Department of
+Physics, Meiji University</a>|</td>
 </tr>
 <tr class="even">
 <td>Apr. 2016 ~ Mar. 2018</td>
-<td>Research Associate, <a href="http://www.st.keio.ac.jp/english/">Faculty of Science and Technology, Keio University</a></td>
+<td>Research Associate, <a
+href="http://www.st.keio.ac.jp/english/">Faculty of Science and
+Technology, Keio University</a>|</td>
 </tr>
 <tr class="odd">
 <td>Apr. 2014 ~ Mar. 2016</td>
-<td>Postdoctoral Fellow, <a href="http://www.sci.tohoku.ac.jp/english/">Department of Physics, Tohoku University</a></td>
+<td>Postdoctoral Fellow, <a
+href="http://www.sci.tohoku.ac.jp/english/">Department of Physics,
+Tohoku University</a>|</td>
 </tr>
 <tr class="even">
 <td>Apr. 2013 ~ Mar. 2014</td>
-<td>Postdoctoral Fellow, <a href="http://www.jsps.go.jp/english/">Japan Society for the Promotion of Science</a>, <a href="http://www.st.keio.ac.jp/english/">Faculty of Science and Technology, Keio University</a></td>
+<td>Postdoctoral Fellow, <a href="http://www.jsps.go.jp/english/">Japan
+Society for the Promotion of Science</a>, <a
+href="http://www.st.keio.ac.jp/english/">Faculty of Science and
+Technology, Keio University</a></td>
 </tr>
 <tr class="odd">
 <td>Apr. 2012 ~ Mar. 2013</td>
-<td>Doctoral Course Fellow, <a href="http://www.jsps.go.jp/english/">Japan Society for the Promotion of Science</a></td>
+<td>Doctoral Course Fellow, <a
+href="http://www.jsps.go.jp/english/">Japan Society for the Promotion of
+Science</a>|</td>
 </tr>
 <tr class="even">
 <td>Apr. 2010 ~ Mar. 2012</td>
-<td>Research Associate, <a href="http://www.st.keio.ac.jp/english/">Graduate School of Science and Technology, Keio University</a></td>
+<td>Research Associate, <a
+href="http://www.st.keio.ac.jp/english/">Graduate School of Science and
+Technology, Keio University</a>|</td>
 </tr>
 </tbody>
 </table>
 <h1 id="funds">Funds</h1>
 <table>
 <colgroup>
-<col style="width: 27%" />
-<col style="width: 72%" />
+<col style="width: 9%" />
+<col style="width: 90%" />
 </colgroup>
 <tbody>
 <tr class="odd">
 <td>Apr. 2020 ~ Mar. 2023</td>
-<td>JSPS KAKENHI Grant-in-Aid for Scientific Research (C) <a href="https://kaken.nii.ac.jp/ja/grant/KAKENHI-PROJECT-20K05258/">20K05258</a>, “Theoretical study on topological properties of phonon in nanocarbon materials”, Co-Investigator</td>
+<td>JSPS KAKENHI Grant-in-Aid for Scientific Research (C) <a
+href="https://kaken.nii.ac.jp/ja/grant/KAKENHI-PROJECT-20K05258/">20K05258</a>,
+“Theoretical study on topological properties of phonon in nanocarbon
+materials”, Co-Investigato</td>
 </tr>
 <tr class="even">
 <td>Apr. 2019 ~ Mar. 2021</td>
-<td>JSPS KAKENHI Grant-in-Aid for Young Scientists <a href="https://kaken.nii.ac.jp/ja/grant/KAKENHI-PROJECT-19K14637/">19K14637</a>, “Quantum optics of phonon in carbon nanotubes”, Principal Investigator</td>
+<td>JSPS KAKENHI Grant-in-Aid for Young Scientists <a
+href="https://kaken.nii.ac.jp/ja/grant/KAKENHI-PROJECT-19K14637/">19K14637</a>,
+“Quantum optics of phonon in carbon nanotubes”, Principal
+Investigator</td>
 </tr>
 <tr class="odd">
 <td>Apr. 2012 ~ Mar. 2014</td>
-<td>JSPS KAKENHI Grant-in-Aid for JSPS Fellows <a href="https://kaken.nii.ac.jp/grant/KAKENHI-PROJECT-12J06574/">12J06574</a>, “Superradiance in transport and optical phenomena in quantum dots”, Principle Investigator</td>
+<td>JSPS KAKENHI Grant-in-Aid for JSPS Fellows <a
+href="https://kaken.nii.ac.jp/grant/KAKENHI-PROJECT-12J06574/">12J06574</a>,
+“Superradiance in transport and optical phenomena in quantum dots”,
+Principle Investigator</td>
 </tr>
 </tbody>
 </table>
